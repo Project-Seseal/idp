@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: vault
+  namespace: argocd
+spec:
+  destination:
+    namespace: vault
+    server: 'https://kubernetes.default.svc'
+  source:
+    repoURL: 'https://helm.releases.hashicorp.com'
+    targetRevision: 0.26.1
+    chart: vault
+    helm:
+      parameters:
+        - name: server.affinity
+          value: ""
+        - name: server.ha.enabled
+          value: "true"
+        - name: server.ha.replicas
+          value: "1"
+        - name: ui.enabled
+          value: "true"
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: false
+    syncOptions:
+      - CreateNamespace=true

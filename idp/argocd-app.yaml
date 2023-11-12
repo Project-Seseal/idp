@@ -1,0 +1,43 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: idp
+  namespace: argocd
+spec:
+  project: default
+  source:
+    chart: hydra
+    repoURL: https://k8s.ory.sh/helm/charts
+    targetRevision: 0.37.0
+    helm:
+      releaseName: idp
+      parameters:
+        - name: ingress.admin.enabled
+          value: 'true'
+        - name: 'ingress.admin.hosts[0].host'
+          value: admin.idp.rasouza.dev
+        - name: ingress.public.enabled
+          value: 'true'
+        - name: 'ingress.public.hosts[0].host'
+          value: idp.rasouza.dev
+      # valuesObject:
+      #   hydra:
+      #     existingSecret: ""
+      #     config:
+      #       dsn: "postgresql://postgres:wR00GEcY7HXYS2At@db.vmkidqvnrnyybtlfroxw.supabase.co:5432/postgres"
+      #       urls:
+      #         self:
+      #           issuer: "https://idp.rasouza.dev/"
+      #           login: "https://idp.rasouza.dev/login"
+      #           consent: "https://idp.rasouza.dev/consent"
+
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: idp
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+  
