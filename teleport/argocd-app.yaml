@@ -3,9 +3,12 @@ kind: Application
 metadata:
   name: bastion
   namespace: argocd
+  finalizers:
+    # The default behaviour is foreground cascading deletion
+    - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: atlantis
+    namespace: bastion
     server: 'https://kubernetes.default.svc'
   source:
     repoURL: 'https://charts.releases.teleport.dev'
