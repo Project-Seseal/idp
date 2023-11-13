@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager
+  namespace: argocd
+  finalizers:
+    # The default behaviour is foreground cascading deletion
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: cert-manager
+    server: 'https://kubernetes.default.svc'
+  source:
+    repoURL: 'https://charts.jetstack.io'
+    targetRevision: 1.13.2
+    chart: cert-manager
+    helm:
+      valuesObject:
+        installCRDs: "true" # TODO: Move to terraform
+  project: default
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
