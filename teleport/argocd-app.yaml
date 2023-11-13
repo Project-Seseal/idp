@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: bastion
+  namespace: argocd
+spec:
+  destination:
+    namespace: atlantis
+    server: 'https://kubernetes.default.svc'
+  source:
+    repoURL: 'https://charts.releases.teleport.dev'
+    targetRevision: 14.1.1
+    chart: teleport-cluster
+    helm:
+      valuesObject:
+        clusterName: bastion.rasouza.dev
+        proxyListenerMode: multiplex
+        acme: true
+        acmeEmail: alves.wm@gmail.com
+        ingress:
+          enabled: "true"
+        service:
+          type: "ClusterIP"
+  project: default
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
