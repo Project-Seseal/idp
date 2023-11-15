@@ -14,8 +14,6 @@ spec:
     repoURL: https://github.com/project-seseal/k8s.git
     targetRevision: main
     path: infra/cert-manager
-
-    kustomize: {}
   project: infra
   syncPolicy:
     automated:
