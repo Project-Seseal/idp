@@ -18,7 +18,9 @@ spec:
       version: v3
       valuesObject:
         installCRDs: "true" # TODO: Move to terraform
-  project: default
+  project: infra
   syncPolicy:
+    automated:
+      prune: true
     syncOptions:
       - CreateNamespace=true
