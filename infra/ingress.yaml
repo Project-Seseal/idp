@@ -37,3 +37,6 @@ spec:
           extraArgs:
             publish-status-address: "localhost"
   project: infra
+  syncPolicy:
+    automated:
+      prune: true
