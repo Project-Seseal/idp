@@ -8,7 +8,7 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: bastion
+    namespace: teleport-cluster
     server: 'https://kubernetes.default.svc'
   source:
     repoURL: 'https://charts.releases.teleport.dev'
@@ -16,15 +16,14 @@ spec:
     chart: teleport-cluster
     helm:
       valuesObject:
-        clusterName: bastion.rasouza.dev
-        proxyListenerMode: multiplex
-        acme: true
-        acmeEmail: alves.wm@gmail.com
+        extraArgs:
+          - "--insecure"
+        clusterName: premium-kodiak-meet.ngrok-free.app
+        proxyListenerMode: multiplex                     # Number of replicas to configure
         ingress:
           enabled: "true"
         service:
           type: "ClusterIP"
+        podSecurityPolicy:
+          enabled: false
   project: default
-  syncPolicy:
-    syncOptions:
-      - CreateNamespace=true
