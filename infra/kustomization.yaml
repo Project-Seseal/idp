@@ -4,5 +4,3 @@ resources:
 
 - ingress.yaml
 - cert-manager/app.yaml
-- cert-manager/issuer-prod.yaml
-- cert-manager/issuer-staging.yaml
