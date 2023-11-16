@@ -17,20 +17,24 @@ spec:
     helm:
       valuesObject:
         clusterName: bastion.rasouza.dev
-        highAvailability:
-          replicaCount: 1                                 # Number of replicas to configure
-          certManager:
-            enabled: true                                 # Enable cert-manager support to get TLS certificates
-            issuerName: letsencrypt-prod            # Name of the cert-manager Issuer to use (as configured above)
-            issuerKind: ClusterIssuer
-        # proxyListenerMode: multiplex 
+        extraArgs:
+          - --insecure
+        # highAvailability:
+        #   replicaCount: 1                                 # Number of replicas to configure
+        #   certManager:
+        #     enabled: true                                 # Enable cert-manager support to get TLS certificates
+        #     issuerName: letsencrypt-prod            # Name of the cert-manager Issuer to use (as configured above)
+        #     issuerKind: ClusterIssuer
+        proxyListenerMode: multiplex 
         proxyProtocol: off                    # Number of replicas to configure
         service:
-          type: NodePort
-        # ingress:
-        #   enabled: true
+          type: ClusterIP
+        ingress:
+          enabled: true
         podSecurityPolicy:
           enabled: false
+        acme: true
+        acmeEmail: "alves.wm@gmail.com"
   project: infra
   syncPolicy:
     automated:
