@@ -17,7 +17,6 @@ spec:
     helm:
       valuesObject:
         clusterName: bastion.rasouza.dev
-        # TODO: use cert-manager to generate a certificate for this
         extraArgs:
           - "--insecure"
         highAvailability:
@@ -33,7 +32,7 @@ spec:
           enabled: true
         annotations:
           ingress:
-            cert-manager.io/cluster-issuer: "letsencrypt-teleport"
+            cert-manager.io/cluster-issuer: "letsencrypt-prod"
         podSecurityPolicy:
           enabled: false
   project: infra
