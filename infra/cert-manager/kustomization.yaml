@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
 
 - issuer-staging.yaml
-- issuer-prod.yaml
+- clusterissuer-prod.yaml
