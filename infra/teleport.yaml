@@ -17,20 +17,35 @@ spec:
     helm:
       valuesObject:
         clusterName: bastion.rasouza.dev
-        extraArgs:
-          - --insecure
+        acme: false
+        acmeEmail: ''
+
+        proxy:
+          highAvailability:
+            replicaCount: 1
+
         highAvailability:
           replicaCount: 1                                 # Number of replicas to configure
           certManager:
             enabled: true                                 # Enable cert-manager support to get TLS certificates
             issuerName: letsencrypt-prod            # Name of the cert-manager Issuer to use (as configured above)
             issuerKind: ClusterIssuer
+
         proxyListenerMode: multiplex 
         proxyProtocol: off                    # Number of replicas to configure
         service:
           type: ClusterIP
         ingress:
           enabled: true
+
+        annotations:
+          ingress:
+            external-dns.alpha.kubernetes.io/hostname: ''
+            external-dns.alpha.kubernetes.io/ttl: '120'
+            nginx.ingress.kubernetes.io/backend-protocol: 'HTTPS'
+            nginx.ingress.kubernetes.io/ssl-passthrough: 'true'
+            nginx.ingress.kubernetes.io/ssl-redirect: 'true'
+
         podSecurityPolicy:
           enabled: false
   project: infra
