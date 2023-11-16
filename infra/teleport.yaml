@@ -24,8 +24,8 @@ spec:
           replicaCount: 2                                 # Number of replicas to configure
           certManager:
             enabled: true                                 # Enable cert-manager support to get TLS certificates
-            issuerName: letsencrypt-teleport            # Name of the cert-manager Issuer to use (as configured above)
-    
+            issuerName: letsencrypt-prod            # Name of the cert-manager Issuer to use (as configured above)
+            issuerKind: ClusterIssuer
         proxyListenerMode: multiplex                     # Number of replicas to configure
         service:
           type: ClusterIP
@@ -33,7 +33,7 @@ spec:
           enabled: true
         annotations:
           ingress:
-            cert-manager.io/issuer: "letsencrypt-teleport"
+            cert-manager.io/cluster-issuer: "letsencrypt-teleport"
         podSecurityPolicy:
           enabled: false
   project: infra
