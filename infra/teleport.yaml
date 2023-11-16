@@ -16,14 +16,26 @@ spec:
     chart: teleport-cluster
     helm:
       valuesObject:
+        clusterName: bastion.rasouza.dev
+        # TODO: use cert-manager to generate a certificate for this
         extraArgs:
           - "--insecure"
-        clusterName: premium-kodiak-meet.ngrok-free.app
+        highAvailability:
+          replicaCount: 2                                 # Number of replicas to configure
+          certManager:
+            enabled: true                                 # Enable cert-manager support to get TLS certificates
+            issuerName: letsencrypt-teleport            # Name of the cert-manager Issuer to use (as configured above)
+    
         proxyListenerMode: multiplex                     # Number of replicas to configure
-        ingress:
-          enabled: "true"
         service:
-          type: "ClusterIP"
+          type: "NodePort"
+          spec:
+            # match container port 4242
         podSecurityPolicy:
           enabled: false
-  project: default
+  project: infra
+  syncPolicy:
+    automated:
+      prune: true
+    syncOptions:
+      - CreateNamespace=true
