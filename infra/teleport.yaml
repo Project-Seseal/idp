@@ -31,9 +31,9 @@ spec:
           type: ClusterIP
         ingress:
           enabled: true
-        # annotations:
-        #   ingress:
-        #     cert-manager.io/issuer: "letsencrypt-teleport"
+        annotations:
+          ingress:
+            cert-manager.io/issuer: "letsencrypt-teleport"
         podSecurityPolicy:
           enabled: false
   project: infra
