@@ -25,8 +25,8 @@ spec:
             issuerKind: ClusterIssuer
         # proxyListenerMode: multiplex 
         proxyProtocol: off                    # Number of replicas to configure
-        # service:
-        #   type: ClusterIP
+        service:
+          type: NodePort
         # ingress:
         #   enabled: true
         podSecurityPolicy:
