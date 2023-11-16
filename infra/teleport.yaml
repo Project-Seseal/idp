@@ -28,9 +28,12 @@ spec:
     
         proxyListenerMode: multiplex                     # Number of replicas to configure
         service:
-          type: "NodePort"
-          spec:
-            # match container port 4242
+          type: ClusterIP
+        ingress:
+          enabled: true
+        # annotations:
+        #   ingress:
+        #     cert-manager.io/issuer: "letsencrypt-teleport"
         podSecurityPolicy:
           enabled: false
   project: infra
