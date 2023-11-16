@@ -23,7 +23,8 @@ spec:
             enabled: true                                 # Enable cert-manager support to get TLS certificates
             issuerName: letsencrypt-prod            # Name of the cert-manager Issuer to use (as configured above)
             issuerKind: ClusterIssuer
-        proxyListenerMode: multiplex                     # Number of replicas to configure
+        proxyListenerMode: multiplex 
+        proxyProtocol: off                    # Number of replicas to configure
         service:
           type: ClusterIP
         ingress:
