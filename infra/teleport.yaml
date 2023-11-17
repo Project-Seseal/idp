@@ -48,6 +48,13 @@ spec:
 
         podSecurityPolicy:
           enabled: false
+
+        authentication:
+          type: github
+          connectorName: github_connector
+          localAuth: false
+          secondFactor: webauthn
+
   project: infra
   syncPolicy:
     automated:
