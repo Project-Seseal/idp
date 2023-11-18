@@ -20,7 +20,8 @@ spec:
         roles: "kube,app,discovery"
         proxyAddr: bastion.rasouza.dev:443
         authToken: LsKCTFkuSjpGWd16e9VhESC8kvS3vmAp # Retrieve from Terraform first
-
+        podSecurityPolicy:
+          enabled: false
   project: infra
   syncPolicy:
     automated:
