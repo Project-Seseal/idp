@@ -22,6 +22,9 @@ spec:
         authToken: LsKCTFkuSjpGWd16e9VhESC8kvS3vmAp # Retrieve from Terraform first
         podSecurityPolicy:
           enabled: false
+        log:
+          level: DEBUG
+        insecureSkipProxyTLSVerify: true
   project: infra
   syncPolicy:
     automated:
