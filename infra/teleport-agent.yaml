@@ -24,7 +24,10 @@ spec:
           enabled: false
         log:
           level: DEBUG
-        insecureSkipProxyTLSVerify: true
+        hostAliases:
+          - ip: "10.96.39.114"
+            hostnames:
+              - "bastion.rasouza.dev"
   project: infra
   syncPolicy:
     automated:
