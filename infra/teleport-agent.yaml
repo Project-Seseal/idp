@@ -24,10 +24,16 @@ spec:
           enabled: false
         log:
           level: DEBUG
-        hostAliases:
-          - ip: "10.96.39.114"
-            hostnames:
-              - "bastion.rasouza.dev"
+        dnsConfig:
+          nameservers:
+            - 10.96.0.10
+          searches:
+            - teleport-agent.svc.cluster.local 
+            - svc.cluster.local 
+            - cluster.local
+          options:
+            - name: ndots
+              value: "2"
   project: infra
   syncPolicy:
     automated:
