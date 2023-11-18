@@ -55,6 +55,8 @@ spec:
           localAuth: false
           secondFactor: webauthn
 
+        log:
+          level: DEBUG
   project: infra
   syncPolicy:
     automated:
