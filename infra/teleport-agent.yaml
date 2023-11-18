@@ -12,6 +12,7 @@ spec:
     server: 'https://kubernetes.default.svc'
   source:
     repoURL: 'https://charts.releases.teleport.dev'
+    targetRevision: 14.1.5
     chart: teleport-kube-agent
     helm:
       valuesObject:
