@@ -19,7 +19,7 @@ spec:
         kubeClusterName: k8s-staging
         roles: "kube,app,discovery"
         proxyAddr: bastion.rasouza.dev:443
-        authToken: LsKCTFkuSjpGWd16e9VhESC8kvS3vmAp # Retrieve from Terraform first
+        authToken: 7d3f5cb5a668dce6d10dc74e06d38317 # Retrieve from Terraform first
         podSecurityPolicy:
           enabled: false
         log:
