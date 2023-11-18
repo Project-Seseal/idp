@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: teleport-agent
+  namespace: argocd
+  finalizers:
+    # The default behaviour is foreground cascading deletion
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: teleport-agent
+    server: 'https://kubernetes.default.svc'
+  source:
+    repoURL: 'https://charts.releases.teleport.dev'
+    chart: teleport-kube-agent
+    helm:
+      valuesObject:
+        kubeClusterName: k8s-staging
+        roles: "kube,app,discovery"
+        proxyAddr: bastion.rasouza.dev:443
+        authToken: LsKCTFkuSjpGWd16e9VhESC8kvS3vmAp # Retrieve from Terraform first
+
+  project: infra
+  syncPolicy:
+    automated:
+      prune: true
+    syncOptions:
+      - CreateNamespace=true

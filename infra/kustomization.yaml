@@ -5,4 +5,5 @@ resources:
 - ingress.yaml
 - cert-manager.yaml
 - cert-manager/app-issuers.yaml
-- teleport.yaml
+- teleport-cluster.yaml
+- teleport-agent.yaml
