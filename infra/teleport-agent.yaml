@@ -41,12 +41,13 @@ spec:
               value: "2"
         image: public.ecr.aws/gravitational/teleport-distroless-debug
         apps:
-          - name: ArgoCD
-            uri: http://argocd-server.argocd.svc.cluster.local:8080
+          - name: argocd
+            uri: "http://argocd-server.argocd.svc.cluster.local:8080"
+            public_addr: "argocd.bastion.rasouza.dev"
             labels:
               purpose: infra
           - name: foo
-            uri: http://foo-service.default.svc.cluster.local:5678
+            uri: "http://foo-service.default.svc.cluster.local:5678"
             labels:
               purpose: app
   project: infra
