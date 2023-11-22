@@ -40,6 +40,15 @@ spec:
             - name: ndots
               value: "2"
         image: public.ecr.aws/gravitational/teleport-distroless-debug
+        apps:
+          - name: ArgoCD
+            uri: http://argocd-server.argocd.svc.cluster.local:8080
+            labels:
+              purpose: infra
+          - name: foo
+            uri: http://foo-service.default.svc.cluster.local:5678
+            labels:
+              purpose: app
   project: infra
   syncPolicy:
     automated:
