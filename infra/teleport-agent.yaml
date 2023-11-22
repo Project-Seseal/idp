@@ -39,6 +39,7 @@ spec:
           options:
             - name: ndots
               value: "2"
+        image: public.ecr.aws/gravitational/teleport-distroless-debug
   project: infra
   syncPolicy:
     automated:
