@@ -28,7 +28,6 @@ spec:
           - ip: "10.96.39.114"
             hostnames:
               - "bastion.rasouza.dev"
-        dnsPolicy: None
         dnsConfig:
           nameservers:
             - 10.96.0.10
