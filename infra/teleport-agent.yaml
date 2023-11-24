@@ -38,7 +38,7 @@ spec:
             - cluster.local
           options:
             - name: ndots
-              value: "2"
+              value: "5"
         image: public.ecr.aws/gravitational/teleport-distroless-debug
         apps:
           - name: argocd
